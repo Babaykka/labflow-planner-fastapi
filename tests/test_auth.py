@@ -61,7 +61,7 @@ def test_login_rejects_invalid_password(client):
 def test_demo_account_is_seeded_with_project_data(client):
     token_response = client.post(
         "/auth/token",
-        data={"username": "observer@labflow.local", "password": "PlannerPass2026"},
+        data={"username": "labcurator", "password": "LabPlan2026"},
     )
     assert token_response.status_code == 200
     headers = {"Authorization": f"Bearer {token_response.json()['access_token']}"}

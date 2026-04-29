@@ -90,8 +90,8 @@ uvicorn app.main:app --reload
 
 При первом запуске сервис автоматически создает наполненный аккаунт:
 
-- email: `observer@labflow.local`
-- пароль: `PlannerPass2026`
+- username: `labcurator`
+- пароль: `LabPlan2026`
 
 В аккаунте уже есть проект, приборы, образцы и запланированные анализы.
 
