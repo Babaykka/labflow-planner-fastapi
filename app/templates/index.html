@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LabFlow Planner</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Главная навигация">
+        <a class="brand" href="/">LabFlow Planner</a>
+        <div class="navlinks">
+          <a href="/docs">Swagger</a>
+          <a href="/redoc">ReDoc</a>
+          <a href="/health">Health</a>
+        </div>
+      </nav>
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="eyebrow">FastAPI + SQLite + JWT</p>
+          <h1>Планирование лабораторных анализов без ручного распределения очереди</h1>
+          <p>
+            Сервис хранит проекты, образцы, приборы и запуски анализов, а затем рассчитывает
+            расписание по приоритетам, дедлайнам, совместимости метода и дневной мощности оборудования.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="/docs">Открыть API</a>
+            <a class="button secondary" href="/redoc">Схема данных</a>
+          </div>
+        </section>
+        <section class="schedule-panel" aria-label="Пример расписания">
+          <div class="panel-head">
+            <span>Сегодня</span>
+            <strong>Оптимальный план</strong>
+          </div>
+          <div class="timeline">
+            <article>
+              <span class="slot">09:00</span>
+              <div>
+                <strong>ENZ-HIGH</strong>
+                <p>qPCR station, приоритет 5</p>
+              </div>
+            </article>
+            <article>
+              <span class="slot">13:00</span>
+              <div>
+                <strong>ENZ-LOW</strong>
+                <p>qPCR station, приоритет 1</p>
+              </div>
+            </article>
+            <article class="muted">
+              <span class="slot">План</span>
+              <div>
+                <strong>Алгоритм</strong>
+                <p>Сначала срочные образцы, затем максимальная загрузка без превышения мощности.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main>
+      <section class="band">
+        <div class="section-head">
+          <p class="eyebrow">Сущности</p>
+          <h2>Связанная реляционная модель</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="badge blue">01</span>
+            <h3>Проекты</h3>
+            <p>Лабораторные инициативы со статусами, дедлайнами и владельцем.</p>
+          </article>
+          <article class="card">
+            <span class="badge green">02</span>
+            <h3>Образцы</h3>
+            <p>Материалы анализа с методом, приоритетом, трудоёмкостью и сроком.</p>
+          </article>
+          <article class="card">
+            <span class="badge orange">03</span>
+            <h3>Приборы</h3>
+            <p>Оборудование с методом анализа, статусом и мощностью в часах на день.</p>
+          </article>
+          <article class="card">
+            <span class="badge violet">04</span>
+            <h3>Запуски</h3>
+            <p>Назначения образцов на приборы с датой, плановыми часами и статусом.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="band light">
+        <div class="workflow">
+          <div class="section-head">
+            <p class="eyebrow">Маршрут проверки</p>
+            <h2>Как быстро увидеть работу сервиса</h2>
+          </div>
+          <ol class="steps">
+            <li>Зарегистрировать пользователя через <code>POST /auth/register</code>.</li>
+            <li>Получить JWT через <code>POST /auth/token</code> и нажать Authorize в Swagger.</li>
+            <li>Создать проект, прибор и несколько образцов.</li>
+            <li>Запустить <code>POST /planner/optimize</code> для расчёта плана.</li>
+            <li>Сохранить план через <code>POST /planner/commit</code> и проверить <code>GET /runs</code>.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
