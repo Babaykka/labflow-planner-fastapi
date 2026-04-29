@@ -6,19 +6,29 @@ from sqlalchemy.orm import Session
 from app.core.security import hash_password
 from app.models import AnalysisRun, Equipment, Project, Sample, User
 
-DEMO_EMAIL = "demo@labflow.local"
-DEMO_PASSWORD = "DemoPass123"
+DEMO_EMAIL = "observer@labflow.local"
+DEMO_PASSWORD = "PlannerPass2026"
+DEMO_USERNAME = "labobserver"
+LEGACY_DEMO_EMAIL = "demo@labflow.local"
 
 
 def seed_demo_data(db: Session) -> None:
     existing_user = db.scalar(select(User).where(User.email == DEMO_EMAIL))
     if existing_user is not None:
         return
+    legacy_user = db.scalar(select(User).where(User.email == LEGACY_DEMO_EMAIL))
+    if legacy_user is not None:
+        legacy_user.email = DEMO_EMAIL
+        legacy_user.username = DEMO_USERNAME
+        legacy_user.hashed_password = hash_password(DEMO_PASSWORD)
+        legacy_user.role = "manager"
+        db.commit()
+        return
 
     today = date.today()
     user = User(
         email=DEMO_EMAIL,
-        username="demolab",
+        username=DEMO_USERNAME,
         hashed_password=hash_password(DEMO_PASSWORD),
         role="manager",
     )

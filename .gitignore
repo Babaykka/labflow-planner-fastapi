@@ -5,6 +5,7 @@ __pycache__/
 htmlcov/
 *.pyc
 *.db
+.DS_Store
 .env
 tmp/
 coverage.xml
