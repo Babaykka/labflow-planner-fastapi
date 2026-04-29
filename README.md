@@ -81,6 +81,8 @@ uvicorn app.main:app --reload
 - Swagger: http://127.0.0.1:8000/docs
 - ReDoc: http://127.0.0.1:8000/redoc
 
+Публичная версия: https://labflow-planner-fastapi.vercel.app/
+
 Если `DATABASE_URL` не задан, приложение создаст `labflow.db` в корне проекта.
 Для стабильной авторизации между перезапусками задайте `SECRET_KEY` в `.env`.
 
