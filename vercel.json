@@ -5,10 +5,5 @@
       "source": "/(.*)",
       "destination": "/index.py"
     }
-  ],
-  "functions": {
-    "index.py": {
-      "excludeFiles": "{tests/**,docs/**,tmp/**,.pytest_cache/**,.coverage,*.db,*.pdf}"
-    }
-  }
+  ]
 }
