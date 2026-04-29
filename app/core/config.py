@@ -9,7 +9,10 @@ PROCESS_SECRET = token_urlsafe(48)
 
 class Settings(BaseModel):
     database_url: str = Field(
-        default_factory=lambda: getenv("DATABASE_URL", "sqlite:///./labflow.db")
+        default_factory=lambda: getenv(
+            "DATABASE_URL",
+            "sqlite:////tmp/labflow.db" if getenv("VERCEL") else "sqlite:///./labflow.db",
+        )
     )
     secret_key: str = Field(default_factory=lambda: getenv("SECRET_KEY", PROCESS_SECRET))
     access_token_expire_minutes: int = Field(

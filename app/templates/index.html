@@ -18,7 +18,6 @@
       </nav>
       <div class="hero-grid">
         <section class="hero-copy">
-          <p class="eyebrow">FastAPI + SQLite + JWT</p>
           <h1>Планирование лабораторных анализов без ручного распределения очереди</h1>
           <p>
             Сервис хранит проекты, образцы, приборы и запуски анализов, а затем рассчитывает
@@ -104,6 +103,25 @@
             <li>Запустить <code>POST /planner/optimize</code> для расчёта плана.</li>
             <li>Сохранить план через <code>POST /planner/commit</code> и проверить <code>GET /runs</code>.</li>
           </ol>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="demo-access">
+          <div>
+            <p class="eyebrow">Демо-доступ</p>
+            <h2>Готовый наполненный аккаунт</h2>
+            <p>
+              Внутри уже есть проект, приборы, образцы и запланированные анализы.
+              Достаточно получить токен через Swagger и открыть защищённые эндпоинты.
+            </p>
+          </div>
+          <div class="credentials">
+            <span>Email</span>
+            <strong>demo@labflow.local</strong>
+            <span>Пароль</span>
+            <strong>DemoPass123</strong>
+          </div>
         </div>
       </section>
     </main>

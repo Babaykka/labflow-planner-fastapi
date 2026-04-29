@@ -3,13 +3,19 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from app.db import init_db
+from app.db import db_session_factory, init_db
+from app.demo_data import seed_demo_data
 from app.routers import auth, equipment, planner, projects, runs, samples, users, views
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     init_db()
+    db = db_session_factory()
+    try:
+        seed_demo_data(db)
+    finally:
+        db.close()
     yield
 
 

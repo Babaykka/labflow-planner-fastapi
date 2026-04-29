@@ -56,3 +56,24 @@ def test_login_rejects_invalid_password(client):
         data={"username": "invalid-login@example.com", "password": "wrong"},
     )
     assert response.status_code == 401
+
+
+def test_demo_account_is_seeded_with_project_data(client):
+    token_response = client.post(
+        "/auth/token",
+        data={"username": "demo@labflow.local", "password": "DemoPass123"},
+    )
+    assert token_response.status_code == 200
+    headers = {"Authorization": f"Bearer {token_response.json()['access_token']}"}
+
+    projects_response = client.get("/projects", headers=headers)
+    assert projects_response.status_code == 200
+    assert projects_response.json()[0]["title"] == "Antibody screening batch"
+
+    samples_response = client.get("/samples", headers=headers)
+    assert samples_response.status_code == 200
+    assert len(samples_response.json()) == 3
+
+    runs_response = client.get("/runs", headers=headers)
+    assert runs_response.status_code == 200
+    assert len(runs_response.json()) == 2
