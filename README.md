@@ -62,7 +62,6 @@ app/
   models.py        SQLAlchemy-модели
   schemas.py       Pydantic-схемы
 tests/             тесты TestClient
-docs/              инструкция для видеопрезентации и Postman-коллекция
 ```
 
 ## Запуск локально
@@ -148,9 +147,6 @@ curl -X POST http://127.0.0.1:8000/projects \
   -d '{"title":"Enzyme stability sprint","description":"Short-cycle screening","deadline":"2026-05-20","status":"active"}'
 ```
 
-Для демонстрации удобнее открыть Swagger, нажать Authorize, вставить JWT и
-последовательно выполнить запросы из `docs/labflow.postman_collection.json`.
-
 ## Тесты
 
 ```bash
@@ -162,19 +158,10 @@ pytest
 ## Pylint
 
 ```bash
-pylint app > pylint.txt
+pylint app
 ```
 
-Текущий результат: 10.00/10. Файл `pylint.txt` находится в корне проекта.
-
-## Видеопрезентация
-
-Подробный сценарий записи находится в `docs/video_presentation_guide.md`.
-В нем расписаны подготовка, структура на 5-7 минут, порядок демонстрации API,
-фрагмент кода для объяснения и команда для показа результата pylint.
-
-В конце демонстрации можно сказать, что для быстрой проверки можно просто войти
-в демо-аккаунт на главной странице и посмотреть работоспособность сайта.
+Текущий результат: 10.00/10.
 
 ## Автор
 
