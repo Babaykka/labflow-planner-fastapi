@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LabFlow Planner</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
   </head>
   <body>
     <header class="hero">
@@ -113,7 +114,7 @@
             <h2>Готовый наполненный аккаунт</h2>
             <p>
               Внутри уже есть проект, приборы, образцы и запланированные анализы.
-              Достаточно получить токен через Swagger и открыть защищённые эндпоинты.
+              Можно войти прямо на главной странице и сразу посмотреть данные.
             </p>
           </div>
           <div class="credentials">
@@ -121,6 +122,52 @@
             <strong>labcurator</strong>
             <span>Пароль</span>
             <strong>LabPlan2026</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="band light" id="account">
+        <div class="account-console">
+          <div class="section-head compact">
+            <p class="eyebrow">Вход</p>
+            <h2>Проверка демо-аккаунта</h2>
+            <p>
+              После входа данные появятся здесь же: текущий пользователь, проекты,
+              образцы и запланированные анализы.
+            </p>
+          </div>
+          <form class="login-form" id="login-form">
+            <label>
+              <span>Username</span>
+              <input id="username" name="username" value="labcurator" autocomplete="username" required>
+            </label>
+            <label>
+              <span>Пароль</span>
+              <input id="password" name="password" type="password" value="LabPlan2026" autocomplete="current-password" required>
+            </label>
+            <div class="form-actions">
+              <button class="button primary" type="submit">Войти</button>
+              <button class="button secondary" type="button" id="logout-button">Выйти</button>
+            </div>
+            <p class="auth-message" id="auth-message" role="status"></p>
+          </form>
+          <div class="dashboard" id="dashboard" hidden>
+            <article>
+              <span>Пользователь</span>
+              <strong id="current-user">-</strong>
+            </article>
+            <article>
+              <span>Проекты</span>
+              <ul id="project-list"></ul>
+            </article>
+            <article>
+              <span>Образцы</span>
+              <ul id="sample-list"></ul>
+            </article>
+            <article>
+              <span>Запуски</span>
+              <ul id="run-list"></ul>
+            </article>
           </div>
         </div>
       </section>
