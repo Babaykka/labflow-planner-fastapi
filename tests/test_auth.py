@@ -1,3 +1,11 @@
+def test_swagger_has_home_link(client):
+    response = client.get("/docs")
+    assert response.status_code == 200
+    assert 'class="swagger-home-link"' in response.text
+    assert 'href="/"' in response.text
+    assert ">Home</a>" in response.text
+
+
 def test_register_login_and_current_user(client):
     protected_response = client.get("/users/me")
     assert protected_response.status_code == 401
